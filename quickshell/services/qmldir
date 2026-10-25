@@ -1,0 +1,4 @@
+module services
+singleton NetworkInfo 1.0 NetworkInfo.qml
+singleton Theme 1.0 Theme.qml
+singleton Settings 1.0 Settings.qml

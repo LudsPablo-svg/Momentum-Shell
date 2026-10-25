@@ -1,0 +1,24 @@
+[general]
+import = ["void-theme.toml"]
+
+[window]
+padding = { x = 10, y = 8 }
+decorations = "None"
+opacity = 1.0
+dynamic_title = true
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "DejaVu Sans Mono"
+style = "Book"
+
+[font.bold]
+family = "DejaVu Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "DejaVu Sans Mono"
+style = "Oblique"
+

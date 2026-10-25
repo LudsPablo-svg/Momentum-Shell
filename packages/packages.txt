@@ -1,0 +1,17 @@
+# Void Linux XBPS package names. One package per line.
+xorg
+xinit
+i3
+i3status
+picom
+quickshell
+feh
+alacritty
+rofi
+dunst
+i3lock
+scrot
+dbus
+dejavu-fonts-ttf
+alsa-utils
+brightnessctl

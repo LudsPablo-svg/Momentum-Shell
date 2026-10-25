@@ -1,0 +1,3 @@
+#!/bin/sh
+# The Void handbook documents ~/.xinitrc as the startx session entry point.
+exec dbus-run-session -- /usr/bin/i3

@@ -1,0 +1,7 @@
+@define-color void_accent #80B918;
+@define-color void_selection_text #1B1B1B;
+
+*:selected {
+    background-color: @void_accent;
+    color: @void_selection_text;
+}

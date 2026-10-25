@@ -1,0 +1,10 @@
+module components
+Bar 1.0 Bar.qml
+ActionButton 1.0 ActionButton.qml
+AppHeader 1.0 AppHeader.qml
+SettingToggle 1.0 SettingToggle.qml
+Clock 1.0 Clock.qml
+NetworkIndicator 1.0 NetworkIndicator.qml
+PowerMenu 1.0 PowerMenu.qml
+SystemTray 1.0 SystemTray.qml
+WorkspaceIndicator 1.0 WorkspaceIndicator.qml

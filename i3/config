@@ -1,0 +1,110 @@
+# Void i3 — Mod4 (Super) is the primary modifier.
+include current-theme.conf
+
+set $mod Mod4
+set $terminal alacritty
+set $menu rofi -show drun -show-icons
+set $script_dir ~/.local/bin
+
+font pango:DejaVu Sans Mono 10
+
+floating_modifier $mod
+default_border pixel 2
+default_floating_border pixel 2
+gaps inner 8
+gaps outer 3
+
+# Window navigation and placement.
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Applications and common window actions.
+bindsym $mod+Return exec --no-startup-id $terminal
+bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+
+# Switch workspaces and send the focused window to one.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+# Resize mode: use h/j/k/l or the arrow keys, then Escape/Return to leave.
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Hardware keys call scripts which select the audio/backlight tools available.
+bindsym XF86AudioRaiseVolume exec --no-startup-id $script_dir/void-volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id $script_dir/void-volume down
+bindsym XF86AudioMute exec --no-startup-id $script_dir/void-volume mute
+bindsym XF86MonBrightnessUp exec --no-startup-id $script_dir/void-brightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id $script_dir/void-brightness down
+bindsym Print exec --no-startup-id $script_dir/void-screenshot selection
+bindsym $mod+Print exec --no-startup-id $script_dir/void-screenshot full
+
+bindsym $mod+Ctrl+l exec --no-startup-id i3lock --color=1b1b1b
+bindsym $mod+Shift+i exec --no-startup-id $terminal -e $script_dir/void-system-info
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+F5 exec --no-startup-id qs ipc call void reloadShell
+bindsym $mod+Shift+d exec --no-startup-id qs ipc call void toggleDashboard
+bindsym $mod+Shift+t exec --no-startup-id qs ipc call void toggleThemeManager
+bindsym $mod+Shift+F6 exec --no-startup-id qs ipc call void toggleShellSettings
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -m "Exit i3?" -B "Exit" "i3-msg exit"
+
+# Wallpaper, compositor and notifications for the X11 session.
+exec --no-startup-id ~/.local/bin/void-wallpaper
+exec --no-startup-id picom --config ~/.config/picom/picom.conf --daemon
+exec --no-startup-id dunst
+exec --no-startup-id ~/.local/bin/void-quickshell-start
+
+# Recovery bar and window colors come from current-theme.conf, which is
+# generated from the active theme without relying on i3 variable expansion.
